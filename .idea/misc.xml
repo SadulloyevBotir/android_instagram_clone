@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/activity_splash_bacground.xml" value="0.2025" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/activity_splash_background.xml" value="0.162" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/app_main_gradient.xml" value="0.1865" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/bottom_navigation_color_selector.xml" value="0.1775" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/ic_instagram.xml" value="0.1865" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/view_rounded_corner.xml" value="0.1865" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/font/custom_font.xml" value="0.2578125" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/activity_main.xml" value="0.21927083333333333" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/activity_signin.xml" value="0.21927083333333333" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/activity_signup.xml" value="0.21927083333333333" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/activity_splash.xml" value="0.152" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fagment_search.xml" value="0.21927083333333333" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fragment_Favorite.xml" value="0.21927083333333333" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fragment_home.xml" value="0.21927083333333333" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fragment_profile.xml" value="0.21927083333333333" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fragment_upload.xml" value="0.21927083333333333" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/upload_search.xml" value="0.21927083333333333" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/menu/navigation.xml" value="0.21927083333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
