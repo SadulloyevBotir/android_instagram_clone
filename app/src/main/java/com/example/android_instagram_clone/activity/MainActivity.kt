@@ -14,7 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
  * It contains view pager with 5 fragment in MainActivity
  * and pages can be controlled by BottomNavigationView
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), UploadFragment.UploadListener, HomeFragment.HomeListener {
     var TAG = MainActivity::class.java.toString()
     var index = 0
     lateinit var homeFragment: HomeFragment
@@ -26,6 +26,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initViews()
+    }
+
+
+    override fun scrollToUpload() {
+        index = 2
+        scrollByIndex(index)
+    }
+
+    override fun scrollToHome() {
+        index = 0
+        scrollByIndex(index)
+    }
+
+    private fun scrollByIndex(index: Int) {
+        viewPager.setCurrentItem(index)
+        bottomNavigationView.getMenu().getItem(index).setChecked(true)
     }
 
     private fun initViews() {

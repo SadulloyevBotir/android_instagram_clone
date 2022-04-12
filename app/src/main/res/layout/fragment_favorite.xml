@@ -32,14 +32,6 @@
                     android:text="@string/str_favorite"
                     android:textColor="@color/black"
                     android:textSize="17dp" />
-
-                <ImageView
-                    android:id="@+id/iv_camera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="16dp"
-                    android:src="@mipmap/ic_favorite" />
-
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
@@ -52,14 +44,11 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/custom_font"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="Favorite Fragment"
-            android:textColor="@drawable/app_main_gradient"
-            android:textSize="25sp" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

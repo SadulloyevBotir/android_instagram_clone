@@ -7,7 +7,9 @@
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/activity_splash_background.xml" value="0.162" />
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/app_main_gradient.xml" value="0.1865" />
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/bottom_navigation_color_selector.xml" value="0.1775" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/edittext_rounder_corners.xml" value="0.1575" />
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/ic_instagram.xml" value="0.1865" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/textview_rounder_corners.xml" value="0.1295" />
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/drawable/view_rounded_corner.xml" value="0.1865" />
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/font/custom_font.xml" value="0.2578125" />
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/activity_main.xml" value="0.21927083333333333" />
@@ -18,8 +20,12 @@
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fragment_Favorite.xml" value="0.21927083333333333" />
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fragment_home.xml" value="0.21927083333333333" />
-        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fragment_profile.xml" value="0.21927083333333333" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fragment_profile.xml" value="0.136" />
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/fragment_upload.xml" value="0.21927083333333333" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/item_favorite_home.xml" value="0.19746376811594202" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/item_post_home.xml" value="0.152" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/item_post_profile.xml" value="0.264" />
+        <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/item_user_search.xml" value="0.26126126126126126" />
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/layout/upload_search.xml" value="0.21927083333333333" />
         <entry key="..\:/All Projects/android/Studio Projectes/Studio Projetes Kotlin/android_instagram_clone/app/src/main/res/menu/navigation.xml" value="0.21927083333333333" />
       </map>

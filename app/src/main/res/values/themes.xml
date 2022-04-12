@@ -21,12 +21,16 @@
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@drawable/app_main_gradient</item>
         <item name="android:statusBarColor">@color/app_color_2</item>
-        <item name="android:navigationBarColor">@color/app_color_1</item>
+        <item name="android:navigationBarColor">@color/app_color_2</item>
     </style>
 
     <!--SignIn and  SingUp themes-->
     <style name="SingIn_and_SignUp" parent="Theme.Android_instagram_clone">
         <item name="android:statusBarColor">@color/status_bar_color</item>
-        <item name="android:navigationBarColor">@color/app_color_1</item>
+        <item name="android:navigationBarColor">@color/app_color_2</item>
+    </style>
+
+    <style name="circle">
+        <item name="cornerSize">50%</item>
     </style>
 </resources>
