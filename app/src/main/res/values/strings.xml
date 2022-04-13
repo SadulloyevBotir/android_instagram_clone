@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Insta Clone</string>
+    <string name="app_name">Instagram Clone</string>
     <string name="str_instagram">Instagram</string>
     <string name="str_fullname">Fullname</string>
     <string name="str_email">Email</string>
