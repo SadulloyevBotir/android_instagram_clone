@@ -3,18 +3,28 @@ package com.example.android_instagram_clone.fragment
 import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.android_instagram_clone.R
 import com.example.android_instagram_clone.adapter.ProfileAdapter
+import com.example.android_instagram_clone.manager.AuthManager
+import com.example.android_instagram_clone.manager.DatabaseManager
+import com.example.android_instagram_clone.manager.StorageManager
+import com.example.android_instagram_clone.manager.handler.DBPostsHandler
+import com.example.android_instagram_clone.manager.handler.DBUserHandler
+import com.example.android_instagram_clone.manager.handler.DBUsersHandler
+import com.example.android_instagram_clone.manager.handler.StorageHandler
 import com.example.android_instagram_clone.model.Post
-import com.example.android_instagram_clone.utils.Logger
-import com.example.android_instagram_clone.utils.Logger.d
+import com.example.android_instagram_clone.model.User
 import com.google.android.material.imageview.ShapeableImageView
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
@@ -26,6 +36,11 @@ open class ProfileFragment : BaseFragment() {
     val TAG = SearchFragment::class.java.simpleName
     lateinit var rv_profile: RecyclerView
     lateinit var iv_profile: ShapeableImageView
+    lateinit var tv_fullname: TextView
+    lateinit var tv_email: TextView
+    lateinit var tv_posts: TextView
+    lateinit var tv_following: TextView
+    lateinit var tv_followers: TextView
 
     var pickedPhoto: Uri? = null
     var allPhotos = ArrayList<Uri>()
@@ -43,13 +58,42 @@ open class ProfileFragment : BaseFragment() {
     private fun initViews(view: View) {
         rv_profile = view.findViewById(R.id.rv_profile)
         rv_profile.setLayoutManager(GridLayoutManager(activity, 2))
+        tv_fullname = view.findViewById(R.id.tv_fullname)
+        tv_email = view.findViewById(R.id.tv_email)
+        tv_posts = view.findViewById(R.id.tv_posts)
+        iv_profile = view.findViewById(R.id.iv_profile)
+        tv_followers = view.findViewById(R.id.tv_followers)
+        tv_following = view.findViewById(R.id.tv_following)
 
-        iv_profile = view.findViewById<ShapeableImageView>(R.id.iv_profile)
+        val iv_logout = view.findViewById<ImageView>(R.id.iv_logout)
+        iv_logout.setOnClickListener {
+            AuthManager.signOut()
+            callSignInActivity(requireActivity())
+        }
+
         iv_profile.setOnClickListener {
             pickFishBunPhoto()
         }
 
         refreshAdapter(loadPosts())
+        loadMyFollowers()
+        loadMyFollowing()
+        loadUserInfo()
+        loadMyPosts()
+    }
+
+    private fun loadMyPosts() {
+        val uid = AuthManager.currentUser()!!.uid
+        DatabaseManager.loadPosts(uid, object : DBPostsHandler {
+            override fun onSuccess(posts: ArrayList<Post>) {
+                tv_posts.text = posts.size.toString()
+                refreshAdapter(posts)
+            }
+
+            override fun onError(e: java.lang.Exception) {
+            }
+
+        })
     }
 
 
@@ -71,14 +115,74 @@ open class ProfileFragment : BaseFragment() {
                 allPhotos =
                     it.data?.getParcelableArrayListExtra(FishBun.INTENT_PATH) ?: arrayListOf()
                 pickedPhoto = allPhotos.get(0)
-                uploadPickedPhoto()
+                uploadUserPhoto()
             }
         }
 
-    private fun uploadPickedPhoto() {
-        if (pickedPhoto != null) {
-            Logger.d(TAG, pickedPhoto!!.path.toString())
-        }
+
+    private fun loadUserInfo() {
+        DatabaseManager.loadUser(AuthManager.currentUser()!!.uid, object : DBUserHandler {
+            override fun onSuccess(user: User?) {
+                if (user != null) {
+                    showUserInfo(user)
+                }
+            }
+
+            override fun onError(e: java.lang.Exception) {
+
+            }
+
+        })
+    }
+
+    private fun loadMyFollowing() {
+        var uid = AuthManager.currentUser()!!.uid
+        DatabaseManager.loadFollowing(uid, object : DBUsersHandler {
+            override fun onSuccess(users: ArrayList<User>) {
+                tv_following.text = users.size.toString()
+            }
+
+            override fun onError(e: java.lang.Exception) {
+            }
+
+        })
+    }
+
+    private fun loadMyFollowers() {
+        var uid = AuthManager.currentUser()!!.uid
+        DatabaseManager.loadFollowers(uid, object : DBUsersHandler {
+            override fun onSuccess(users: ArrayList<User>) {
+                tv_followers.text = users.size.toString()
+            }
+
+            override fun onError(e: java.lang.Exception) {
+            }
+
+        })
+    }
+
+    private fun showUserInfo(user: User) {
+        tv_fullname.text = user.fullname
+        tv_email.text = user.email
+        Glide.with(this).load(user.userImg)
+            .placeholder(R.drawable.ic_person)
+            .error(R.drawable.ic_person)
+            .into(iv_profile)
+    }
+
+    private fun uploadUserPhoto() {
+        if (pickedPhoto != null) return
+        StorageManager.uploadUserPhoto(pickedPhoto!!, object : StorageHandler {
+            override fun onSuccess(imgUrl: String) {
+                DatabaseManager.updateUserImage(imgUrl)
+                iv_profile.setImageURI(pickedPhoto)
+            }
+
+            override fun onError(exception: Exception?) {
+
+            }
+
+        })
     }
 
     private fun refreshAdapter(items: ArrayList<Post>) {
@@ -89,9 +193,6 @@ open class ProfileFragment : BaseFragment() {
 
     private fun loadPosts(): ArrayList<Post> {
         val items = ArrayList<Post>()
-        items.add(Post("https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"))
-        items.add(Post("https://images.unsplash.com/photo-1495615080073-6b89c9839ce0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=606&q=80"))
-        items.add(Post("https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"))
         return items
     }
 }

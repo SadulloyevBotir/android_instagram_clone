@@ -8,13 +8,14 @@ import androidx.viewpager.widget.ViewPager
 import com.example.android_instagram_clone.R
 import com.example.android_instagram_clone.adapter.ViewPagerAdapter
 import com.example.android_instagram_clone.fragment.*
+import  com.example.android_instagram_clone.activity.BaseActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 /**
  * It contains view pager with 5 fragment in MainActivity
  * and pages can be controlled by BottomNavigationView
  */
-class MainActivity : AppCompatActivity(), UploadFragment.UploadListener, HomeFragment.HomeListener {
+class MainActivity : BaseActivity(), UploadFragment.UploadListener, HomeFragment.HomeListener {
     var TAG = MainActivity::class.java.toString()
     var index = 0
     lateinit var homeFragment: HomeFragment

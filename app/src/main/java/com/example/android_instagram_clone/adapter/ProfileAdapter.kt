@@ -27,9 +27,12 @@ class ProfileAdapter(var fragment: ProfileFragment, var items: ArrayList<Post>) 
         val post: Post = items[position]
         if (holder is PostViewHolder) {
             var iv_post = holder.iv_post
+            var tv_caption = holder.tv_caption
+
+            tv_caption.text = post.caption
 
             setViewHeight(iv_post)
-            Glide.with(fragment).load(post.image).into(iv_post)
+            Glide.with(fragment).load(post.postImg).into(iv_post)
         }
     }
 

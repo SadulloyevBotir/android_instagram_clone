@@ -30,7 +30,7 @@
                 android:textSize="17dp" />
 
             <ImageView
-                android:id="@+id/iv_camera"
+                android:id="@+id/iv_logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="16dp"
@@ -112,9 +112,10 @@
 
 
                     <TextView
+                        android:id="@+id/tv_posts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="625"
+                        android:text="0"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -134,9 +135,10 @@
 
 
                     <TextView
+                        android:id="@+id/tv_followers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4,256"
+                        android:text="0"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 
@@ -156,9 +158,10 @@
 
 
                     <TextView
+                        android:id="@+id/tv_following"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="879"
+                        android:text="0"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
 

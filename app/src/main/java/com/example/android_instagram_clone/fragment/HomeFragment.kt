@@ -11,13 +11,20 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_instagram_clone.R
 import com.example.android_instagram_clone.adapter.HomeAdapter
+import com.example.android_instagram_clone.manager.AuthManager
+import com.example.android_instagram_clone.manager.DatabaseManager
+import com.example.android_instagram_clone.manager.handler.DBPostHandler
+import com.example.android_instagram_clone.manager.handler.DBPostsHandler
 import com.example.android_instagram_clone.model.Post
+import com.example.android_instagram_clone.utils.Utils
+import java.lang.Exception
 import java.lang.RuntimeException
 
 class HomeFragment : BaseFragment() {
     val TAG = HomeFragment::class.java.simpleName
     lateinit var recyclerView: RecyclerView
     private var listener: HomeListener? = null
+    var feeds = ArrayList<Post>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +34,12 @@ class HomeFragment : BaseFragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         initViews(view)
         return view
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        if (isVisibleToUser && feeds.size > 0) {
+            loadMyFeeds()
+        }
     }
 
     /**
@@ -59,7 +72,7 @@ class HomeFragment : BaseFragment() {
             listener!!.scrollToUpload()
         }
 
-        refreshAdapter(loadPosts())
+        loadMyFeeds()
     }
 
 
@@ -68,13 +81,54 @@ class HomeFragment : BaseFragment() {
         recyclerView.adapter = adapter
     }
 
-    private fun loadPosts(): ArrayList<Post> {
-        val items = ArrayList<Post>()
-        items.add(Post("https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"))
-        items.add(Post("https://images.unsplash.com/photo-1495615080073-6b89c9839ce0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=606&q=80"))
-        items.add(Post("https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"))
-        return items
+    private fun loadMyFeeds() {
+        showLoading(requireActivity())
+        val uid = AuthManager.currentUser()!!.uid
+        DatabaseManager.loadFeeds(uid, object : DBPostsHandler {
+            override fun onSuccess(posts: ArrayList<Post>) {
+                dismissLoading()
+                feeds.clear()
+                feeds.addAll(posts)
+                refreshAdapter(feeds)
+            }
+
+            override fun onError(e: Exception) {
+                dismissLoading()
+            }
+        })
     }
+
+    fun likeOrUnlikePost(post: Post) {
+        val uid = AuthManager.currentUser()!!.uid
+        DatabaseManager.likeFeedPost(uid, post)
+    }
+
+    fun showDeleteDialog(post: Post) {
+        Utils.dialogDouble(
+            requireContext(),
+            getString(R.string.str_delete_post),
+            object : Utils.DialogListener {
+                override fun onCallback(isChosen: Boolean) {
+                    if (isChosen) {
+                        deletePost(post)
+                    }
+                }
+
+            })
+    }
+
+    fun deletePost(post: Post) {
+        DatabaseManager.deletePost(post, object : DBPostHandler {
+            override fun onSuccess(post: Post) {
+                loadMyFeeds()
+            }
+
+            override fun onError(e: Exception) {
+
+            }
+        })
+    }
+
 
     /**
      * This interface is created for communication with UploadFragment
