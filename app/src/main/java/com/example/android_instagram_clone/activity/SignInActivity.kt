@@ -9,6 +9,7 @@ import com.example.android_firebase_demo.utils.Extensions.toast
 import com.example.android_instagram_clone.R
 import com.example.android_instagram_clone.manager.AuthManager
 import com.example.android_instagram_clone.manager.handler.AuthHandler
+import com.example.android_instagram_clone.utils.DeepLink
 
 /*
  * In SignInActivity, user can login using email,password
@@ -35,8 +36,12 @@ class SignInActivity : BaseActivity() {
                 firebaseSignIn(email, password)
             }
         }
+
         val tv_signup = findViewById<TextView>(R.id.tv_signup)
         tv_signup.setOnClickListener { callSignUpActivity() }
+
+        val tv_link = findViewById<TextView>(R.id.tv_link)
+        DeepLink.retrieveLink(intent,tv_link)
     }
 
     private fun firebaseSignIn(email: String, password: String) {

@@ -13,6 +13,7 @@ import com.example.android_instagram_clone.manager.PrefsManager
 import com.example.android_instagram_clone.utils.Logger
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import java.lang.RuntimeException
 
 /**
  * In SplashActivity , user can visit to SignInActivity or MainActivity
@@ -22,13 +23,8 @@ class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        window.setFlags(
-//            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//            WindowManager.LayoutParams.FLAG_FULLSCREEN
-//        )
         setContentView(R.layout.activity_splash)
         initViews()
-
     }
 
 
