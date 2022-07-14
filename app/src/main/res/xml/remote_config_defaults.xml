@@ -9,7 +9,11 @@
         <value>30</value>
     </entry>
     <entry>
-        <key>main_background_color</key>
-        <value>#42f486</value>
+        <key>color1</key>
+        <value>#c13584</value>
+    </entry>
+    <entry>
+        <key>color2</key>
+        <value>#833AB4</value>
     </entry>
 </defaultsMap>
