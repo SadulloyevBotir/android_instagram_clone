@@ -59,6 +59,9 @@ class FirebaseConfig(var ll: LinearLayout, var tv: TextView) {
     }
 
 
+
+
+
     fun View.backgroundGradientDrawable(@ColorInt startColor: Int, @ColorInt endColor: Int): Unit {
         val h = this.height.toFloat()
         val shapeDrawable = ShapeDrawable(RectShape())
